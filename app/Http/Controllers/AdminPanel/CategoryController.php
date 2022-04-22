@@ -24,7 +24,7 @@ class CategoryController extends Controller
        }
        $parent=Category::find($category->parent_id);
        $title=$parent->title .' > ' .$title;
-       return CategoryController::getParentTree($parent,$title);
+       return CategoryController::getParentsTree($parent,$title);
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         }
         $data->save();
         return redirect('admin/category');
-        //
+
     }
 
     /**
@@ -139,10 +139,19 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category,$id)
+    public function delete(Category $category,$id)
     {
         $data= Category::find($id);
-        Storage::delete($data->image);
+        if($data->image && Storage::disk('public')->exists($data->image)){
+            Storage::delete($data->image);
+        }
+        $categoryList = Category::all();
+        foreach ($categoryList as $c){
+            if($c->parent_id == $data->id){
+                $c->delete();
+            }
+        }
+
         $data->delete();
         return redirect('admin/category');
         //
