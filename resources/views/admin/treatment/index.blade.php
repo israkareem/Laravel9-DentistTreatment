@@ -249,7 +249,6 @@
 
                                     <td>{{$rs->status}}</td>
                                     <td>
-                                        <a href="{{route('admin.treatment.show',['id'=>$rs->id])}}" type="button" class="btn btn-primary">Show</a>
                                         <a href="{{route('admin.treatment.edit',['id'=>$rs->id])}}" type="button" class="btn btn-success">Edit</a>
                                         <a href="{{route('admin.treatment.delete',['id'=>$rs->id])}}" type="button" class="btn btn-danger"
                                            onclick="return confirm('Deleting!! Are you sure?')">Delete</a>

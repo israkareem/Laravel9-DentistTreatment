@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -17,7 +19,7 @@ class ImageController extends Controller
     public function index($tid)
     {
         $treatment=Treatment::find($tid);
-        $images=Image::where('treatment_id',$tid);
+        $images= DB::table('images')->where('treatment_id',$tid)->get();
         return view('admin.image.index',[
             'treatment'=>$treatment,
             'images'=>$images
@@ -26,12 +28,13 @@ class ImageController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *  @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create($tid)
+    public function create(Request $request,$tid)
     {
-        //
+
+
     }
 
     /**
@@ -42,7 +45,19 @@ class ImageController extends Controller
      */
     public function store(Request $request,$tid)
     {
-        //
+        $data = new Image();
+        $data->title = $request->title;
+        $data->treatment_id = $tid;
+
+        if ($request->file('image')) {
+            $data->image = $request->file('image')->store('image');
+        }
+       else{
+            $data->image = "REsult:".$request->file('image');
+        }
+
+        $data->save();
+        return redirect()->route('admin.image.index',['tid'=>$tid]);
     }
 
     /**
@@ -76,7 +91,7 @@ class ImageController extends Controller
      */
     public function update(Request $request,$tid, $id)
     {
-        //
+
     }
 
     /**
@@ -85,8 +100,14 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($tid,$id)
+    public function delete($tid,$id)
     {
-        //
+        $data= Image::find($id);
+        if($data->image && Storage::disk('public')->exists($data->image)){
+            Storage::delete($data->image);
+        }
+
+        $data->delete();
+        return redirect()->route('admin.image.index',['tid'=>$tid]);
     }
 }

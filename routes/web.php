@@ -84,7 +84,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //**************************************** ADMIN TREATMENT IMAGE GALLERY ROUTES  *************************************************//
     Route::prefix('/image')->name('image.')->controller(ImageController::class)->group(function () {
         Route::get('/{tid}','index')->name('index');
-        Route::get('/create/{tid}','create')->name('create');
+
         Route::post('/store/{tid}','store')->name('store');
         Route::get('/edit/{tid}/{id}','edit')->name('edit');
         Route::post('/update/{tid}/{id}','update')->name('update');
