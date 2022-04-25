@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class HomeCountroller extends Controller
+class HomeController extends Controller
 {
     //
     public function index(){
-        return view('home.index');
+        $sliderdata = Category::all();
+        return view('home.index',['sliderdata'=>$sliderdata]);
     }
 
     public function test(){

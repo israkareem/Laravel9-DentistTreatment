@@ -3,6 +3,11 @@
 
 @section('title', 'Add Category')
 
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+
+@endsection
+
 @section('content')
 
 
@@ -229,8 +234,19 @@
                                 <div class="form-group">
 
                                     <label for="exampleInputEmail">Description</label>
+                                    <textarea class="form-control" id="detail" name="detail">
 
-                                    <input type="text"  placeholder="Description" class="form-control" name="description">
+                                    </textarea>
+                                    <script>
+                                        ClassicEditor
+                                            .create( document.querySelector( '#detail' ) )
+                                            .then( editor => {
+                                                console.log( editor );
+                                            } )
+                                            .catch( error => {
+                                                console.error( error );
+                                            } );
+                                    </script>
 
 
                                 </div>
@@ -255,7 +271,6 @@
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <select class="form-control" name="status">
-                                            <option value="unknown">Status</option>
                                             <option value="true">True</option>
                                             <option value="false">False</option>
 

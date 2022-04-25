@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\ImageController;
-use App\Http\Controllers\HomeCountroller;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\CategoryController as AdminCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,15 +30,15 @@ Route::get('/welcome', function () {
 });
 
 //3-call controller function
-Route::get('/',[HomeCountroller::class,'index'])->name('home');
+Route::get('/',[HomeController::class,'index'])->name('home');
 
 //4-route->controller->view
-Route::get('/test',[HomeCountroller::class,'test'])->name('test');
+Route::get('/test',[HomeController::class,'test'])->name('test');
 
 //5-Route with parameters
-Route::get('/param/{id}/{number}',[HomeCountroller::class,'param'])->name('param');
+Route::get('/param/{id}/{number}',[HomeController::class,'param'])->name('param');
 //Route with post
-Route::post('/save',[HomeCountroller::class,'save'])->name('save');
+Route::post('/save',[HomeController::class,'save'])->name('save');
 
 
 Route::middleware(['auth:sactun','verified'])->get('/dashboard',function (){
