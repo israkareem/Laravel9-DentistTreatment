@@ -43,8 +43,6 @@
     @include("home.sidebar")
 @show
 
-@section('slider')
-    @include("home.slider")
 
     @yield('content')
 

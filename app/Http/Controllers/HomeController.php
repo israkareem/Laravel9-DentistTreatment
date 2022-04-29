@@ -5,14 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     //
+
     public function index(){
+        $page = 'home';
         $sliderdata = Category::all();
         $datalist = Treatment::all();
-        return view('home.index',['sliderdata'=>$sliderdata, 'datalist'=>$datalist]);
+        return view('home.index',[
+            'page'=>$page,
+            'sliderdata'=>$sliderdata,
+            'datalist'=>$datalist]);
+
+    }
+
+    public function treatment($id){
+
+        $data = Treatment::find($id);
+        $images= DB::table('images')->where('treatment_id',$id)->get();
+        return view('home.treatment',[
+            'data'=>$data,
+            'images'=>$images]
+        );
     }
 
     public function test(){
