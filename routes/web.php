@@ -41,6 +41,7 @@ Route::get('/param/{id}/{number}',[HomeController::class,'param'])->name('param'
 Route::post('/save',[HomeController::class,'save'])->name('save');
 
 Route::get('/treatment/{id}',[HomeController::class,'treatment'])->name('treatment');
+Route::get('/categorytreatments/{id}/{slug}',[HomeController::class,'categorytreatments'])->name('categorytreatments');
 
 Route::middleware(['auth:sactun','verified'])->get('/dashboard',function (){
 return view('dashbroad');

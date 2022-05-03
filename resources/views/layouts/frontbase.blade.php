@@ -47,8 +47,6 @@
     @yield('content')
 
 
-<h1>Footer</h1>
-
 @include("home.footer")
 @yield('foot')
 

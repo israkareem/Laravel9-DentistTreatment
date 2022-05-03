@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     //
+    public static function maincategoryList(){
+        return Category::where('parent_id','=',0)->with('children')->get();
+    }
 
     public function index(){
         $page = 'home';
@@ -29,6 +32,18 @@ class HomeController extends Controller
         return view('home.treatment',[
             'data'=>$data,
             'images'=>$images]
+        );
+    }
+    public function categorytreatments($id,$slug){
+
+        echo "Category Treatments";
+        exit();
+
+        $data = Treatment::find($id);
+        $images= DB::table('images')->where('treatment_id',$id)->get();
+        return view('home.treatment',[
+                'data'=>$data,
+                'images'=>$images]
         );
     }
 

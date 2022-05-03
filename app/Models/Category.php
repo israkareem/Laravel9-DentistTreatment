@@ -12,4 +12,13 @@ class Category extends Model
     public function treatments(){
         return $this->hasMany(Treatments::class);
     }
+    #one
+    public function parent(){
+        return $this->belongsTo(Category::class,'parent_id');
+    }
+    public function children(){
+    return $this->hasMany(Category::class,'parent_id');
+}
+
+
 }
