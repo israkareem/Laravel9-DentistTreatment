@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Setting;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,40 @@ class HomeController extends Controller
 
     }
 
+    public function about(){
+
+
+        echo "About";
+        exit();
+        $setting=Setting::first();
+        return view('home.about',[
+            'setting'=>$setting,
+            ]);
+
+    }
+
+    public function references(){
+
+
+        echo "references";
+        exit();
+        $setting=Setting::first();
+        return view('home.index',[
+            'setting'=>$setting,
+        ]);
+    }
+
+    public function contact(){
+
+
+        echo "contact";
+        exit();
+        $setting=Setting::first();
+        return view('home.index',[
+            'setting'=>$setting,
+        ]);
+    }
+
     public function treatment($id){
 
         $data = Treatment::find($id);
@@ -34,16 +69,13 @@ class HomeController extends Controller
             'images'=>$images]
         );
     }
-    public function categorytreatments($id,$slug){
+    public function categorytreatments($id){
 
-        echo "Category Treatments";
-        exit();
-
-        $data = Treatment::find($id);
-        $images= DB::table('images')->where('treatment_id',$id)->get();
-        return view('home.treatment',[
-                'data'=>$data,
-                'images'=>$images]
+        $category = Category::find($id);
+        $treatments= DB::table('treatments')->where('category_id',$id)->get();
+        return view('home.categorytreatments',[
+                'category'=>$category,
+                'treatments'=>$treatments]
         );
     }
 

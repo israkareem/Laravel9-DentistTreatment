@@ -29,8 +29,12 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-//3-call controller function
+
+//**************************************** HOME PAGE ROUTES  *************************************************//
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/about',[HomeController::class,'about'])->name('about');
+Route::get('/references',[HomeController::class,'references'])->name('references');
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 
 //4-route->controller->view
 Route::get('/test',[HomeController::class,'test'])->name('test');
@@ -53,7 +57,10 @@ return view('dashbroad');
 //**************************************** ADMIN PANEL ROUTES  *************************************************//
 Route::prefix('admin')->name('admin.')->group(function () {
  Route::get('/',[AdminHomeController::class,'index'])->name('index');
+//**************************************** GENERAL Routes ROUTES  *************************************************//
 
+    Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
+    Route::post('/setting',[AdminHomeController::class,'settingUpdate'])->name('setting.update');
 
 //**************************************** ADMIN CATEGORY ROUTES  *************************************************//
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {

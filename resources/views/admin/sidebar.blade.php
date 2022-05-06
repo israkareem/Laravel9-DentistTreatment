@@ -59,7 +59,7 @@
 
 
                 <li class="nav-item">
-                    <a href="#"  class="nav-link" >
+                    <a href="{{route('admin.setting')}}"  class="nav-link" >
 {{--                        <i class="></i>--}}
                         <p class="fa fa-gear fa-spin" style="font-size:19px;margin-right: 12px"></p>Settings</a>
 
