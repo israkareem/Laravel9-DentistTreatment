@@ -19,8 +19,10 @@ class HomeController extends Controller
         $page = 'home';
         $sliderdata = Category::all();
         $datalist = Treatment::all();
+        $setting=Setting::first();
         return view('home.index',[
             'page'=>$page,
+            'setting'=>$setting,
             'sliderdata'=>$sliderdata,
             'datalist'=>$datalist]);
 

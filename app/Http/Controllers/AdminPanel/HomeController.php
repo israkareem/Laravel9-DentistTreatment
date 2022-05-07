@@ -9,14 +9,15 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return view("admin.index");
+        $data=Setting::first();
+        return view("admin.index",['setting'=>$data]);
     }
     public function setting(){
 
         $data=Setting::first();
         if($data===null){
             $data=new Setting();
-            $data->title='DentistTrestment';
+            $data->title='DentistTreatment';
             $data->save();
             $data=Setting::first();
         }

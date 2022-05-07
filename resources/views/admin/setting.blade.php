@@ -87,7 +87,7 @@
                                                   <label class=" form-control-label"><b>Icon</b></label>
                                                   <div class="input-group">
                                                       <div class="custom-file">
-                                                          <input type="file" id="exampleInputFıle" name="image">
+                                                          <input type="file" id="exampleInputFıle" name="icon">
                                                       </div>
 
                                                   </div>
@@ -109,7 +109,7 @@
                                                       <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
                                                   </div>
                                               </div>
-                                          </form>
+
 
                                         </div>
                                     </div>
@@ -117,8 +117,7 @@
 
                                     <div class="tab-pane fade active show" id="nav-email" role="tabpanel" aria-labelledby="nav-email-tab">
                                         <div class="form-group">
-                                            <form action="{{route('admin.setting.update')}}" method="post">
-                                                @csrf
+
                                             <label for="exampleInputEmail"><b>Smtp Server</b></label>
                                             <input type="text" value="{{$data->smptserver}}" class="form-control" name="smptserver">
 
@@ -138,15 +137,14 @@
                                             </div>
 
 
-                                            </form>
+
                                         </div>
                                     </div>
 
 
                                     <div class="tab-pane fade" id="nav-social" role="tabpanel" aria-labelledby="nav-social-tab">
                                         <div class="form-group">
-                                            <form action="{{route('admin.setting.update')}}" method="post">
-                                                @csrf
+
                                             <label for="exampleInputEmail"><b>Fax</b></label>
                                             <input type="text" value="{{$data->fax}}" class="form-control" name="fax">
 
@@ -165,15 +163,14 @@
 
 
 
-                                            </form>
+
                                         </div>
                                     </div>
 
 
                                     <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
                                         <div class="form-group">
-                                            <form action="{{route('admin.setting.update')}}" method="post">
-                                                @csrf
+
                                             <label for="exampleInputEmail"><b>About Us</b></label>
                                             <textarea class="form-control" id="about-us" name="detail">
                                                 {{$data->aboutus}}
@@ -197,15 +194,14 @@
 
 
 
-                                            </form>
+
                                         </div>
                                     </div>
 
 
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                         <div class="form-group">
-                                            <form action="{{route('admin.setting.update')}}" method="post">
-                                                @csrf
+
                                             <label for="exampleInputEmail"><b>References</b></label>
                                             <textarea class="form-control" id="contact" name="detail">
                                                 {{$data->contact}}
@@ -228,15 +224,14 @@
 
 
 
-                                            </form>
+
                                         </div>
                                     </div>
 
 
                                     <div class="tab-pane fade" id="nav-reference" role="tabpanel" aria-labelledby="nav-reference-tab">
                                         <div class="form-group">
-                                            <form action="{{route('admin.setting.update')}}" method="post">
-                                                @csrf
+
                                             <label for="exampleInputEmail"><b>References</b></label>
 
                                             <textarea class="form-control" id="references" name="detail">

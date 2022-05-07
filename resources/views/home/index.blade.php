@@ -1,9 +1,13 @@
 @extends('layouts.frontbase')
 
-@section('title', 'Title from sub title')
+@section('title', $setting->title)
+@section('description', $setting->description)
+@section('keywords', $setting->keywords)
+@section('icon',Storage::url($setting->icon) )
 
-
-
+@section('slider')
+    @include('home.slider')
+@endsection
 
 @section('content')
 
