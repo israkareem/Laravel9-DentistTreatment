@@ -53,13 +53,14 @@
                                         <a class="nav-item nav-link" id="nav-reference-tab" data-toggle="tab" href="#nav-reference" role="tab" aria-controls="nav-reference" aria-selected="false">References</a>
                                     </div>
                                 </nav>
+                                <form action="{{route('admin.setting.update')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
                                 <div class="tab-content pl-3 pt-2" id="nav-tabContent">
 
                                     <div class="tab-pane fade" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
 
                                         <div class="form-group">
-                                          <form action="{{route('admin.setting.update')}}" method="post" enctype="multipart/form-data">
-                                              @csrf
+
 
                                               <input type="hidden" id="id" name="id" value="{{$data->id}}" class="form-control">
                                               <label for="exampleInputEmail"><b>Title</b></label>
@@ -105,9 +106,7 @@
                                                       </select>
                                                   </div>
 
-                                                  <div class="form-actions form-group" style="margin-top: 25px;margin-left: 25px ">
-                                                      <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
-                                                  </div>
+
                                               </div>
 
 
@@ -119,7 +118,7 @@
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail"><b>Smtp Server</b></label>
-                                            <input type="text" value="{{$data->smptserver}}" class="form-control" name="smptserver">
+                                            <input type="text" value="{{$data->smtpserver}}" class="form-control" name="smtpserver">
 
                                             <label for="exampleInputEmail"><b>Smtp Email</b></label>
                                             <input type="text" value="{{$data->smtpemail}}" class="form-control" name="smtpemail">
@@ -132,9 +131,7 @@
                                             <label for="exampleInputEmail"><b>Smtp Port</b></label>
                                             <input type="text" value="{{$data->smtpport}}" class="form-control" name="smtpport">
 
-                                            <div class="form-actions form-group" style="margin-top: 25px;margin-left: 25px ">
-                                                <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
-                                            </div>
+
 
 
 
@@ -157,9 +154,7 @@
                                             <label for="exampleInputEmail"><b>Twitter</b></label>
                                             <input type="text" value="{{$data->twitter}}" class="form-control" name="twitter">
 
-                                            <div class="form-actions form-group" style="margin-top: 25px;margin-left: 25px ">
-                                                <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
-                                            </div>
+
 
 
 
@@ -172,7 +167,7 @@
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail"><b>About Us</b></label>
-                                            <textarea class="form-control" id="about-us" name="detail">
+                                            <textarea class="form-control" id="about-us" name="aboutus">
                                                 {{$data->aboutus}}
 
                                     </textarea>
@@ -188,9 +183,6 @@
                                             </script>
 
 
-                                            <div class="form-actions form-group" style="margin-top: 25px;margin-left: 25px ">
-                                                <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
-                                            </div>
 
 
 
@@ -203,7 +195,7 @@
                                         <div class="form-group">
 
                                             <label for="exampleInputEmail"><b>References</b></label>
-                                            <textarea class="form-control" id="contact" name="detail">
+                                            <textarea class="form-control" id="contact" name="contact">
                                                 {{$data->contact}}
                                     </textarea>
                                             <script>
@@ -218,9 +210,6 @@
                                             </script>
 
 
-                                            <div class="form-actions form-group" style="margin-top: 25px;margin-left: 25px ">
-                                                <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
-                                            </div>
 
 
 
@@ -234,7 +223,7 @@
 
                                             <label for="exampleInputEmail"><b>References</b></label>
 
-                                            <textarea class="form-control" id="references" name="detail">
+                                            <textarea class="form-control" id="references" name="references">
 
                                                 {{$data->references}}
                                     </textarea>
@@ -249,18 +238,26 @@
                                                     } );
                                             </script>
 
-                                            <div class="form-actions form-group" style="margin-top: 25px;margin-left: 25px ">
-                                                <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
-                                            </div>
 
 
 
-                                            </form>
+
+
                                         </div>
+
                                     </div>
 
 
+
+                                    <div class="form-actions form-group" style="margin-top: 25px;margin-left: 25px ">
+                                        <button type="submit" class="btn btn-success btn-sm">Update Setting</button>
+                                    </div>
+
                                 </div>
+
+
+
+                                </form>
                             </div>
 
                         </div>
