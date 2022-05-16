@@ -48,7 +48,7 @@
                 <li>
                     <a href="#"><i class="fas fa-question"></i>FAQ</a></li>
                 <li>
-                    <a href="#"><i class="fa fa-envelope" style="font-size:18px"></i>Messages</a></li>
+                    <a href="{{route('admin.message.index')}}"><i class="fa fa-envelope" style="font-size:18px"></i>Messages</a></li>
 
                 <li>
                     <a href="#" ><i class="fas fa-user text-green"></i>Users</a></li>

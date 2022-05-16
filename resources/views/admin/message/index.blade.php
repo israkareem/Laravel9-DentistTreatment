@@ -1,9 +1,24 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Show Category: '.$data->title)
+@section('title', 'Contact Form Messages List')
 
 @section('content')
+
+    <style>.container {
+            padding: 2rem 0rem;
+        }
+
+        h4 {
+            margin: 2rem 0rem 1rem;
+        }
+
+        .table-image {
+        td, th {
+            vertical-align: middle;
+        }
+        }</style>
+
 
 
 
@@ -187,85 +202,49 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
 
-            <h4 style="margin-left:30px;margin-bottom:30px;">Show Category: {{$data->title}}</h4>
-
+           <h3 style="margin-left:30px;margin-bottom:30px;margin-top: 20px">Message List</h3>
             <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div   class="card">
-                        <div class="card-header">Detail Data</div>
-                        <div class="card-body card-block">
-                            <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post">
-                                @csrf
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Actions</th>
 
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </td>
 
+                                @foreach($data as $rs)
+                                <tr>
 
-                                <div class="row m-t-30">
-                                    <div class="col-md-12">
+                                    <td>{{$rs->id}}</td>
+                                    <td>{{$rs->name}}</td>
+                                    <td>{{$rs->phone}}</td>
+                                    <td>{{$rs->email}}</td>
+                                    <td>{{$rs->subject}}</td>
+                                    <td>{{$rs->status}}</td>
 
-                                        <div class="table-responsive m-b-40">
-                                            <table class="table table-borderless table-data3">
-                                                 <tr>
-                                                    <th>Id</th>
+                                    <td>
+                                        <a href="{{route('admin.message.show',['id'=>$rs->id])}} "class="btn btn-success"
+                                           onclick="return !window.open(this.href,'','top=50 left=100 height=1000, width=700')">Show</a>
+                                        <a href="{{route('admin.message.delete',['id'=>$rs->id])}}" type="button" class="btn btn-danger"
+                                           onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                                                   <td>{{$data->id}}</td>
-                                                </tr>
-
-
-
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <td> {{$data->title}}</td>
-                                                </tr>
-
-
-                                                <tr>
-                                                    <th>Keywords</th>
-                                                    <td>{{$data->keywords}}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <th>Description</th>
-                                                    <td>{{$data->description}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <td> </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Status</th>
-                                                    <td>{{$data->status}}</td>
-                                                </tr>
-
-
-                                                <tr>
-                                                    <th>Created Date</th>
-                                                    <td>{{$data->created_at}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Update Date</th>
-                                                    <td>{{$data->updated_at}}</td>
-                                                </tr>
-
-                                                <tbody>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                                <a href="{{route('admin.category.edit',['id'=>$data->id])}}" type="button" class="btn btn-success">Edit</a>
-                                <a href="{{route('admin.category.delete',['id'=>$data->id])}}" type="button" class="btn btn-danger"
-                                 onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
-
-                            </form>
-
-
-                    </div>
-
-
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

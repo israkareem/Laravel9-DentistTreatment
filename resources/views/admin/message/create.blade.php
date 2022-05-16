@@ -1,8 +1,11 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Show Category: '.$data->title)
+@section('title', 'Add Treatment')
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 
+@endsection
 @section('content')
 
 
@@ -187,90 +190,117 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
 
-            <h4 style="margin-left:30px;margin-bottom:30px;">Show Category: {{$data->title}}</h4>
+            <h4 style="margin-left:30px;margin-bottom:30px;">Add Treatment</h4>
 
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div   class="card">
-                        <div class="card-header">Detail Data</div>
+                        <div class="card-header">Treatment Elements</div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post">
+                            <form action="{{route('admin.treatment.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
 
+                                <div class="form-group">
 
+                                    <div class="form-control">
+                                        <label>Parent Treatment</label>
+                                        <select class="form-control select2" name="parent_id" >
 
-                                <div class="row m-t-30">
-                                    <div class="col-md-12">
-
-                                        <div class="table-responsive m-b-40">
-                                            <table class="table table-borderless table-data3">
-                                                 <tr>
-                                                    <th>Id</th>
-
-                                                   <td>{{$data->id}}</td>
-                                                </tr>
-
-
-
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <td> {{$data->title}}</td>
-                                                </tr>
-
-
-                                                <tr>
-                                                    <th>Keywords</th>
-                                                    <td>{{$data->keywords}}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <th>Description</th>
-                                                    <td>{{$data->description}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <td> </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Status</th>
-                                                    <td>{{$data->status}}</td>
-                                                </tr>
-
-
-                                                <tr>
-                                                    <th>Created Date</th>
-                                                    <td>{{$data->created_at}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Update Date</th>
-                                                    <td>{{$data->updated_at}}</td>
-                                                </tr>
-
-                                                <tbody>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
+                                            @foreach($data as $rs)
+                                                <option value="{{$rs->id}}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
 
-                                <a href="{{route('admin.category.edit',['id'=>$data->id])}}" type="button" class="btn btn-success">Edit</a>
-                                <a href="{{route('admin.category.delete',['id'=>$data->id])}}" type="button" class="btn btn-danger"
-                                 onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
 
+                                        <label for="exampleInputEmail">Title </label>
+
+                                        <input type="text"  placeholder="Title" class="form-control" name="title">
+
+
+
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Keywords</label>
+
+                                    <input type="text"  placeholder="Keywords" class="form-control" name="keywords">
+
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Description</label>
+                                    <textarea class="form-control" id="detail" name="detail">
+
+                                    </textarea>
+                                    <script>
+                                        ClassicEditor
+                                            .create( document.querySelector( '#detail' ) )
+                                            .then( editor => {
+                                                console.log( editor );
+                                            } )
+                                            .catch( error => {
+                                                console.error( error );
+                                            } );
+                                    </script>
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Price</label>
+
+                                    <input type="text"  placeholder="Price" class="form-control" name="price">
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class=" form-control-label">Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" id="exampleInputFıle" name="image">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <select class="form-control" name="status">
+                                            <option value="unknown">Status</option>
+                                            <option value="true">True</option>
+                                            <option value="false">False</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-actions form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                </div>
                             </form>
-
-
+                        </div>
                     </div>
-
-
+                    <div class="row">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
     <!-- END PAGE CONTAINER-->
 
 @endsection

@@ -24,7 +24,7 @@ class AdminTreatmentController extends Controller
         return view('admin.treatment.index',[
             'data'=>$data
         ]);
-        //
+
     }
 
     /**
@@ -79,7 +79,7 @@ class AdminTreatmentController extends Controller
         return view('admin.treatment.show',[
             'data'=>$data
         ]);
-        //
+
     }
 
     /**

@@ -1,7 +1,7 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Show Category: '.$data->title)
+@section('title', 'Edit Treatment: '.$data->title)
 
 @section('content')
 
@@ -187,85 +187,90 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
 
-            <h4 style="margin-left:30px;margin-bottom:30px;">Show Category: {{$data->title}}</h4>
+            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Treatment: {{$data->title}}</h4>
 
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div   class="card">
-                        <div class="card-header">Detail Data</div>
+                        <div class="card-header">Category Elements</div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post">
+                            <form action="{{route('admin.treatment.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
                                 @csrf
 
+                                <div class="form-group">
+
+                                    <div class="form-group">
+                                        <label>Parent Category</label>
+                                        <select class="form-control select2" name="category_id">
+                                            <option value="0" selected="selected">Main Treatment</option>
+                                            @foreach($datalist as $rs)
+                                                <option value="{{$rs->id}}" @if($rs->id==$data->parent_id) selected="selected" @endif>
+                                                    {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                        <label for="exampleInputEmail">Title </label>
+
+                                        <input type="text"  value="{{$data->title}}" class="form-control" name="title">
 
 
-                                <div class="row m-t-30">
-                                    <div class="col-md-12">
+                                </div>
+                                <div class="form-group">
 
-                                        <div class="table-responsive m-b-40">
-                                            <table class="table table-borderless table-data3">
-                                                 <tr>
-                                                    <th>Id</th>
+                                    <label for="exampleInputEmail">Keywords</label>
 
-                                                   <td>{{$data->id}}</td>
-                                                </tr>
+                                    <input type="text"  value="{{$data->keywords}}" class="form-control" name="keywords">
 
 
+                                </div>
+                                <div class="form-group">
 
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <td> {{$data->title}}</td>
-                                                </tr>
+                                    <label for="exampleInputEmail">Description</label>
 
-
-                                                <tr>
-                                                    <th>Keywords</th>
-                                                    <td>{{$data->keywords}}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <th>Description</th>
-                                                    <td>{{$data->description}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <td> </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Status</th>
-                                                    <td>{{$data->status}}</td>
-                                                </tr>
+                                    <input type="text"  value="{{$data->description}}" class="form-control" name="description">
 
 
-                                                <tr>
-                                                    <th>Created Date</th>
-                                                    <td>{{$data->created_at}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Update Date</th>
-                                                    <td>{{$data->updated_at}}</td>
-                                                </tr>
+                                </div>
 
-                                                <tbody>
-
-                                                </tbody>
-                                            </table>
+                                <div class="form-group">
+                                    <label class=" form-control-label">Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" id="exampleInputFıle" accept=".jpg,.png" name="image">
                                         </div>
 
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <select class="form-control" name="status">
+                                            <option selected>{{$data->status}}</option>
+                                            <option value="true">True</option>
+                                            <option value="false">False</option>
+
+                                        </select>
                                     </div>
                                 </div>
 
 
-                                <a href="{{route('admin.category.edit',['id'=>$data->id])}}" type="button" class="btn btn-success">Edit</a>
-                                <a href="{{route('admin.category.delete',['id'=>$data->id])}}" type="button" class="btn btn-danger"
-                                 onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
 
+
+                                <div class="form-actions form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Update Data</button>
+                                </div>
                             </form>
-
-
+                        </div>
                     </div>
-
-
+                    <div class="row">
                     </div>
                 </div>
             </div>
