@@ -104,6 +104,7 @@
                     <li class="nav-item"><a href="doctors.html" class="nav-link">Doctors</a></li>
                     <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="{{route('references')}}" class="nav-link">References</a></li>
+                    <li class="nav-item"><a href="{{route('faq')}}" class="nav-link">FAQ</a></li>
                     <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
                     <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Make an Appointment</span></a></li>
                 </ul>
@@ -121,6 +122,7 @@
             <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
             <li class="nav-item"><a href="doctors.html" class="nav-link">Doctors</a></li>
             <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="{{route('faq')}}" class="nav-link">FAQ</a></li>
             <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
             <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Make an Appointment</span></a></li>
         </ul>

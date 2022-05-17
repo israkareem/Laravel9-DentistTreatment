@@ -96,7 +96,7 @@ class AdminTreatmentController extends Controller
             'data'=> $data,
             'datalist'=>$datalist
         ]);
-        //
+
     }
 
     /**

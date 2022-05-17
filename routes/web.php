@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\AdminTreatmentController;
+use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
@@ -37,7 +39,7 @@ Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/references',[HomeController::class,'references'])->name('references');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::post('/storemessage',[HomeController::class,'storemessage'])->name('storemessage');
-
+Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 
 //4-route->controller->view
 Route::get('/test',[HomeController::class,'test'])->name('test');
@@ -80,7 +82,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
     //**************************************** ADMIN TREATMENT ROUTES  *************************************************//
-    Route::prefix('/treatment')->name('treatment.')->controller(\App\Http\Controllers\AdminPanel\AdminTreatmentController::class)->group(function () {
+    Route::prefix('/treatment')->name('treatment.')->controller(AdminTreatmentController::class)->group(function () {
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
 
@@ -112,6 +114,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/edit/{id}','edit')->name('edit');
         Route::post('/update/{id}','update')->name('update');
+        Route::get('/delete/{id}','delete')->name('delete');
+
+    });
+    //**************************************** ADMIN FAQ ROUTES  *************************************************//
+    Route::prefix('/faq')->name('faq.')->controller(FaqController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/create','create')->name('create');
+
+        Route::post('/store','store')->name('store');
+
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/show/{id}','show')->name('show');
         Route::get('/delete/{id}','delete')->name('delete');
 
     });

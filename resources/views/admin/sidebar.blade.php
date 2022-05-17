@@ -15,7 +15,6 @@
                         <a href="{{route('admin.category.index')}}">  <i class="fa fa-home" style="font-size:18px" ></i>Dashboard</a></a>
                 </li>
 
-
                 <li>
 
                     <a href="#"><i class="fa fa-calendar" style="margin-right: 18px; font-size:18px"></i>Appointment</a>
@@ -46,21 +45,15 @@
                 <li>
                     <a href="#"><i class="fas fa-comment"></i>Comments</a></li>
                 <li>
-                    <a href="#"><i class="fas fa-question"></i>FAQ</a></li>
+                    <a href="{{route('admin.faq.index')}}"><i class="fas fa-question"></i>FAQ</a></li>
                 <li>
                     <a href="{{route('admin.message.index')}}"><i class="fa fa-envelope" style="font-size:18px"></i>Messages</a></li>
 
                 <li>
                     <a href="#" ><i class="fas fa-user text-green"></i>Users</a></li>
 
-
-
-
-
-
                 <li class="nav-item">
                     <a href="{{route('admin.setting')}}"  class="nav-link" >
-{{--                        <i class="></i>--}}
                         <p class="fa fa-gear fa-spin" style="font-size:19px;margin-right: 12px"></p>Settings</a>
 
                     </ul>
