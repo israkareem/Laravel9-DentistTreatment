@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Faq;
 use App\Models\Message;
 use App\Models\Setting;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -28,6 +30,9 @@ class HomeController extends Controller
             'sliderdata'=>$sliderdata,
             'datalist'=>$datalist]);
 
+    }
+    public function login(){
+        return view('layouts.guest');
     }
 
     public function about(){
@@ -78,6 +83,50 @@ class HomeController extends Controller
         $data->save();
         return redirect()->route('contact')->with('info','Your message has been sent.Thank you.');
     }
+
+    public function storecomment(Request $request){
+//        dd($request);
+        $data=new Comment();
+        $data->user_id =Auth::id(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        );
+        $data->treatment_id =$request->input('treatment_id');
+        $data->subject =$request->input('subject');
+        $data->review =$request->input('review');
+        $data->rate =5;
+
+        $data->ip =$request->ip();
+        $data->save();
+        return redirect()->route('treatment',['id'=>$request->input('treatment_id')])->with('info','Your comment has been sent.Thank you.');
+    }
+
+  //  public function login(Request $request){
+    //    return view('home.login');
+      // }
+
 
     public function treatment($id){
 

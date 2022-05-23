@@ -234,6 +234,15 @@
                                 </div>
 
                                 <div class="form-group">
+
+                                    <label for="exampleInputEmail">Price</label>
+
+                                    <input type="text"  value="{{$data->price}}" class="form-control" name="price">
+
+
+                                </div>
+
+                                <div class="form-group">
                                     <label class=" form-control-label">Image</label>
                                     <div class="input-group">
                                         <div class="custom-file">
