@@ -302,18 +302,29 @@
                     <div class="row" >
                         <div class="col-sm-5 col-md-6 col-12 pb-4" >
                             <h1>Comments</h1>
-                            <div class="comment mt-4 text-justify float-left">
-                                <h4>Jhon Doe</h4>
-                                <span>- 20 October, 2018</span>
+                        @foreach($comments as $rs )
+
+                            <div class="comment mt-4 text-justify float-left w-100">
+                                <h4>{{$rs->user->name}}</h4>
+                                <span>{{$rs->created_at}}</span>
                                 <br>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                                <p>{{$rs->comment}}</p>
+                                @for($i=1; $i<=$rs->rate; $i++)
+                                    <svg class="rating__star" style="display: inline-block !important;">
+                                        <use xlink:href="#star" name="rate"></use>
+                                    </svg>
+                                @endfor
+
                             </div>
 
+
+                        @endforeach
                         </div>
-                        <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                        <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4" style="">
                             <form class="review-form" action="{{route('storecomment')}}" method="post">
                                 @csrf
                                 <input type="hidden" name="treatment_id"  value="{{$data->id}}">
+
                                 <div class="form-group">
                                     <h4 style="color:white">Leave a comment </h4>
                                     <div class="form-group">
@@ -321,21 +332,21 @@
                                         <input type="text" name="subject" placeholder="Subject" >
 
                                     </div>
-                                    <textarea name="review" placeholder="Your Review" cols="30" rows="5" class="form-control"></textarea>
+                                    <textarea name="comment" placeholder="Your Comment" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
 
                                 <div class="page">
                                     <div class="page__demo">
                                         <div class="page__group">
                                             <div class="rating">
-                                                <input type="radio" name="rating-star" class="rating__control screen-reader" id="rc1">
-                                                <input type="radio" name="rating-star" class="rating__control screen-reader" id="rc2">
-                                                <input type="radio" name="rating-star" class="rating__control screen-reader" id="rc3">
-                                                <input type="radio" name="rating-star" class="rating__control screen-reader" id="rc4">
-                                                <input type="radio" name="rating-star" class="rating__control screen-reader" id="rc5">
+                                                <input type="radio" name="rating-star" value="1" class="rating__control screen-reader" id="rc1">
+                                                <input type="radio" name="rating-star" value="2"  class="rating__control screen-reader" id="rc2">
+                                                <input type="radio" name="rating-star" value="3"  class="rating__control screen-reader" id="rc3">
+                                                <input type="radio" name="rating-star" value="4"  class="rating__control screen-reader" id="rc4">
+                                                <input type="radio" name="rating-star" value="5"  class="rating__control screen-reader" id="rc5">
                                                 <label for="rc1" class="rating__item">
                                                     <svg class="rating__star">
-                                                        <use xlink:href="#star"></use>
+                                                        <use xlink:href="#star" name="rate"></use>
                                                     </svg>
                                                     <span class="screen-reader">1</span>
                                                 </label>
@@ -378,9 +389,9 @@
 
                                 <div class="form-group">
                                     @auth
-                                    <button class="primary-btn">Post Comment</button>
+                                    <button class="primary-btn" method="post">Post Comment</button>
                                     @else
-                                    <a href="/login" class="primary-btn">For submit your review, please login</a>
+                                    <a href="/login" class="primary-btn">For submit your comment, please login</a>
                                         @endauth
                                 </div>
                             </form>

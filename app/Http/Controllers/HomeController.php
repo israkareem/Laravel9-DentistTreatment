@@ -87,36 +87,11 @@ class HomeController extends Controller
     public function storecomment(Request $request){
 //        dd($request);
         $data=new Comment();
-        $data->user_id =Auth::id(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        );
+        $data->user_id =Auth::id();
+        $data->comment =$request->input('comment');
         $data->treatment_id =$request->input('treatment_id');
         $data->subject =$request->input('subject');
-        $data->review =$request->input('review');
-        $data->rate =5;
+        $data->rate =$request->input('rating-star');;
 
         $data->ip =$request->ip();
         $data->save();
@@ -132,9 +107,13 @@ class HomeController extends Controller
 
         $data = Treatment::find($id);
         $images= DB::table('images')->where('treatment_id',$id)->get();
+        $comments= Comment::where('treatment_id',$id)->get();
+
         return view('home.treatment',[
             'data'=>$data,
-            'images'=>$images]
+            'images'=>$images,
+             'comments'=>$comments
+            ]
         );
     }
     public function categorytreatments($id){

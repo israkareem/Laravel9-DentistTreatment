@@ -14,10 +14,11 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
+            $table->id()->autoIncrement();
             $table->integer('user_id');
             $table->integer('treatment_id');
             $table->string('subject',100);
-            $table->string('review')->nullable();
+            $table->string('comment')->nullable();
             $table->string('IP',20)->nullable();
             $table->integer('rate')->default('0');
             $table->string('status',5)->default('New');
