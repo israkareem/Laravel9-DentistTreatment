@@ -26,8 +26,7 @@
                     <div   class="card">
 
                         <div class="card-body card-block">
-                            <form action="{{route('admin.comment.update',['id'=>$data->id])}}" method="post">
-                                @csrf
+
 
 
 
@@ -42,7 +41,11 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <th>Name & Surname</th>
+                                                    <th>Treatment</th>
+                                                    <td> {{$data->treatment->title}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Username</th>
                                                     <td> {{$data->user->name}}</td>
                                                 </tr>
                                                 <tr>
@@ -62,6 +65,10 @@
                                                     <td>{{$data->status}}</td>
                                                 </tr>
                                                 <tr>
+                                                    <th>Ip Number</th>
+                                                    <td>{{$data->IP}}</td>
+                                                </tr>
+                                                <tr>
                                                     <th>Created Date</th>
                                                     <td>{{$data->created_at}}</td>
                                                 </tr>
@@ -71,19 +78,18 @@
                                                     <td>{{$data->updated_at}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Admin Note</th>
                                                     <td>
-                                                        <form action="{{route('admin.comment.update',['id'=>$data->id])}}" method="post">
+                                                        <form action="{{route('admin.comment.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
 
                                                             @csrf
-                                                        <textarea cols="50" id="note" name="note">{{$data->note}}</textarea>
+                                                            <div class="form-actions form-group">
+                                                                <select name="status">
+                                                                    <option value="{{$data->status}}">{{$data->status}}</option>
+                                                                    <option value="True">True</option>
+                                                                    <option value="False">False</option>
+                                                                </select>
+                                                            </div>
 
-                                                            <select name="status">
-                                                    <option selected>{{$data->status}}</option>
-
-                                                                <option>True</option>
-                                                                <option>False</option>
-                                                            </select>
 
                                                             <div class="form-actions form-group">
                                                                 <button type="submit" class="btn btn-success btn-sm">Update Comment</button>
@@ -100,7 +106,7 @@
                                     </div>
                                 </div>
 
-                            </form>
+
 
 
                     </div>

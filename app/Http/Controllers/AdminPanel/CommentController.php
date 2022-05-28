@@ -53,8 +53,10 @@ class CommentController extends Controller
     public function show($id)
     {
         $data=Comment:: find($id);
-        $data->status='Read';
-        $data->save();
+        if($data->status == null){
+            $data->status = "New";
+            $data->save();
+        }
         return view('admin.comment.show',[
             'data'=>$data
         ]);
@@ -83,6 +85,8 @@ class CommentController extends Controller
         $data=Comment::find($id);
         $data->status =$request->status;
         $data->save();
+
+
         return redirect(route('admin.comment.show',['id'=>$id]));
     }
 
@@ -92,8 +96,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $data= Comment::find($id);
+
+        $data->delete();
+        return redirect(route('admin.comment.index'));
     }
 }

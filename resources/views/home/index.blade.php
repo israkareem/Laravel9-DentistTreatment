@@ -187,6 +187,22 @@
                             <div class="text">
                                 <p>{{$rs->detail}}</p>
                             </div>
+                            @php
+                                $average = $rs->comment->average('rate');
+                            @endphp
+                            <style>
+                                .checked {
+                                    color: orange !important;
+                                }
+                            </style>
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                            <span class="fa fa-star @if($average> 0) checked @endif"></span>
+                            <span class="fa fa-star @if($average> 1) checked @endif"></span>
+                            <span class="fa fa-star @if($average > 2) checked @endif"></span>
+                            <span class="fa fa-star @if($average > 3) checked @endif"></span>
+                            <span class="fa fa-star @if($average > 4) checked @endif"></span>
+
                         </div>
                     </div>
                 </div>

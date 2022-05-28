@@ -211,6 +211,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">Id</th>
+                                    <th scope="col">Treatment</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Subject</th>
                                     <th scope="col">Comment</th>
@@ -227,11 +228,8 @@
                                 <tr>
 
                                     <td>{{$rs->id}}</td>
-
-
-                                    <td>{{$rs->user->name}}</td>
-
-
+                                    <td><a href="{{route('admin.treatment.show',['id'=>$rs->treatment_id])}}">{{$rs->treatment->title}}</a></td>
+                                    <td> {{$rs->user->name}}</td>
                                     <td>{{$rs->subject}}</td>
                                     <td>{{$rs->comment}}</td>
                                     <td>{{$rs->rate}}</td>

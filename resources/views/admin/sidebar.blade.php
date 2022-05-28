@@ -16,8 +16,6 @@
                 </li>
 
                 <li>
-
-                    <a href="#"><i class="fa fa-calendar" style="margin-right: 18px; font-size:18px"></i>Appointment</a>
                 <li>
 
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -27,9 +25,6 @@
                         </li>
                         <li>
                             <a href="index2.html">Dashboard 2</a>
-                        </li>
-                        <li>
-                            <a href="index3.html">Dashboard 3</a>
                         </li>
 
                     </ul>
@@ -43,7 +38,7 @@
                     <a href="{{route('admin.treatment.index')}}"><i class="fas fa-table"></i>Treatments</a></li>
 
                 <li>
-                    <a href="#"><i class="fas fa-comment"></i>Comments</a></li>
+                    <a href="{{route('admin.comment.index')}}"><i class="fas fa-comment"></i>Comments</a></li>
                 <li>
                     <a href="{{route('admin.faq.index')}}"><i class="fas fa-question"></i>FAQ</a></li>
                 <li>

@@ -8,13 +8,18 @@
 
 @section('content')
 
+    <style>
+        .checked {
+            color: orange !important;
+        }
+    </style>
 <div class="container">
-    <div class="row">
+    <div class="row" style="margin-bottom: 200px;">
         <div class="col-6">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height: 700px;">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{\Illuminate\Support\Facades\Storage::url($data->image)}}" class="d-block w-100" alt="{{$data->title}}">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($data->image)}}" class="d-block w-100" alt="{{$data->title}}" style="height: 800px;">
                     </div>
 
                     @foreach($images as $rs)
@@ -35,6 +40,20 @@
         </div>
         <div class="col-6">
             <h4>{{$data->title}}</h4>
+            <h5>{{$data->price}}</h5>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            @php
+            $average = $data->comment->average('rate');
+            @endphp
+
+            <span class="fa fa-star @if($average> 0) checked @endif"></span>
+            <span class="fa fa-star @if($average> 1) checked @endif"></span>
+            <span class="fa fa-star @if($average > 2) checked @endif"></span>
+            <span class="fa fa-star @if($average > 3) checked @endif"></span>
+            <span class="fa fa-star @if($average > 4) checked @endif"></span>
+            <a href="#comments">{{$data->comment->count('id')}}/{{number_format($average,2)}} - Comment(s)/Add Comment</a>
+
+
             <p>{{$data->description}}</p>
 
 
@@ -259,7 +278,7 @@
         }
 
         .page{
-            min-height: 100vh;
+
             display: flex;
         }
 
@@ -293,15 +312,16 @@
         }
     </style>
 
-    <div class="row">
 
+
+</div>
 
             <!-- Main Body -->
             <section>
                 <div class="container">
                     <div class="row" >
                         <div class="col-sm-5 col-md-6 col-12 pb-4" >
-                            <h1>Comments</h1>
+                            <h1 id = "comments">Comments</h1>
                         @foreach($comments as $rs )
 
                             <div class="comment mt-4 text-justify float-left w-100">
@@ -309,19 +329,20 @@
                                 <span>{{$rs->created_at}}</span>
                                 <br>
                                 <p>{{$rs->comment}}</p>
-                                @for($i=1; $i<=$rs->rate; $i++)
-                                    <svg class="rating__star" style="display: inline-block !important;">
-                                        <use xlink:href="#star" name="rate"></use>
-                                    </svg>
-                                @endfor
+
+                                <span class="fa fa-star @if($rs->rate > 0) checked @endif"></span>
+                                <span class="fa fa-star @if($rs->rate > 1) checked @endif"></span>
+                                <span class="fa fa-star @if($rs->rate > 2) checked @endif"></span>
+                                <span class="fa fa-star @if($rs->rate > 3) checked @endif"></span>
+                                <span class="fa fa-star @if($rs->rate > 4) checked @endif"></span>
 
                             </div>
 
 
                         @endforeach
                         </div>
-                        <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4" style="">
-                            <form class="review-form" action="{{route('storecomment')}}" method="post">
+
+                            <form class="review-form" action="{{route('storecomment')}}" method="post" style="">
                                 @csrf
                                 <input type="hidden" name="treatment_id"  value="{{$data->id}}">
 
@@ -335,7 +356,7 @@
                                     <textarea name="comment" placeholder="Your Comment" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
 
-                                <div class="page">
+                                <div class="page" style="height: 300px !important;">
                                     <div class="page__demo">
                                         <div class="page__group">
                                             <div class="rating">
@@ -395,13 +416,11 @@
                                         @endauth
                                 </div>
                             </form>
-                        </div>
+
                     </div>
                 </div>
             </section>
-        </div>
 
-</div>
 
 @endsection
 

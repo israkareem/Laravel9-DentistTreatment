@@ -1,7 +1,7 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Edit Treatment: '.$data->title)
+@section('title', 'Edit Comment: '.$data->title)
 
 @section('content')
 
@@ -187,14 +187,14 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
 
-            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Treatment: {{$data->title}}</h4>
+            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Comment: {{$data->title}}</h4>
 
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div   class="card">
                         <div class="card-header">Category Elements</div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.treatment.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('admin.comment.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
