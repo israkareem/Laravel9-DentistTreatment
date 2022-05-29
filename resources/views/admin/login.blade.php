@@ -77,7 +77,9 @@
                         </a>
                     </div>
                     <div class="login-form">
-                        <form action="{{route('loginadmin')}}" method="post">
+                        @include('home.messages')
+                        <form action="{{route('loginadmincheck')}}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label>Email Address</label>
                                 <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
@@ -91,7 +93,7 @@
                                     <input type="checkbox" name="remember">Remember Me
                                 </label>
                                 <label>
-                                    <a href="/registeruser">Forgotten Password?</a>
+                                    <a href="/registeruser">Register a new membership</a>
                                 </label>
                             </div>
                             <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>

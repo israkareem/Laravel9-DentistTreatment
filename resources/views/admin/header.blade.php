@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="header-mobile-inner">
                     <a class="logo" href="index.html">
-                        <img src="{{asset('assets')}}/admin/images/icon/logo.png" alt="CoolAdmin" />
+                       <font size="+3">{{Auth::user()->name}}</font>
                     </a>
                     <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -28,12 +28,6 @@
                             </li>
                             <li>
                                 <a href="index2.html">Dashboard 2</a>
-                            </li>
-                            <li>
-                                <a href="index3.html">Dashboard 3</a>
-                            </li>
-                            <li>
-                                <a href="index4.html">Dashboard 4</a>
                             </li>
                         </ul>
                     </li>

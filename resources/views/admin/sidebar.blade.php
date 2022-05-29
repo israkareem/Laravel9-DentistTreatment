@@ -2,7 +2,7 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="#">
-            <img src="{{asset('assets')}}/admin/images/icon/logo.png" alt="Cool Admin" />
+            <font size="+2">MY ADMIN PANEL</font>
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
