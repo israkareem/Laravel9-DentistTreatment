@@ -173,7 +173,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
                 <div class="col-md-7 text-center heading-section ftco-animate">
-                    <h2 class="mb-3">Your treatments</h2>
+                    <h2 class="mb-3"> Treatments</h2>
                 </div>
             </div>
             <div class="row">
@@ -185,7 +185,7 @@
                             <h3><a href="{{route('treatment',['id'=>$rs->id])}}">{{$rs->title}}</a></h3>
                             <span class="position">{{$rs->keyword}}</span>
                             <div class="text">
-                                <p>{{$rs->detail}}</p>
+                                <p>{!!$rs->detail!!}</p>
                             </div>
                             @php
                                 $average = $rs->comment->average('rate');

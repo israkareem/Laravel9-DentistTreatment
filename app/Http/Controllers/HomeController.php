@@ -35,6 +35,16 @@ class HomeController extends Controller
         return view('layouts.guest');
     }
 
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
+    }
+
     public function about(){
 
 

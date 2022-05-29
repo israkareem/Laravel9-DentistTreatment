@@ -54,7 +54,7 @@
             <a href="#comments">{{$data->comment->count('id')}}/{{number_format($average,2)}} - Comment(s)/Add Comment</a>
 
 
-            <p>{{$data->description}}</p>
+            <p>{!!$data->description!!}</p>
 
 
         </div>

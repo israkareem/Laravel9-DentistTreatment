@@ -43,10 +43,12 @@ Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::post('/storemessage',[HomeController::class,'storemessage'])->name('storemessage');
 Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 Route::post('/storecomment',[HomeController::class,'storecomment'])->name('storecomment');
-Route::view('/loginuser',[HomeController::class,'loginuser'])->name('loginuser');
-Route::view('/registeruser',[HomeController::class,'registeruser'])->name('registeruser');
-Route::get('/logoutuser',[HomeController::class,'logoutuser'])->name('logoutuser');
-Route::post('/loginadmin',[HomeController::class,'loginadmin'])->name('loginadmin');
+Route::view('/loginuser','home.login');
+Route::view('/registeruser','home.register');
+Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
+
+//Route::get('/logoutuser',[HomeController::class,'logoutuser'])->name('logoutuser');
+//Route::post('/loginadmin',[HomeController::class,'loginadmin'])->name('loginadmin');
 
 
 

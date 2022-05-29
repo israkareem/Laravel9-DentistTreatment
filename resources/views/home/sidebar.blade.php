@@ -101,12 +101,26 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="doctors.html" class="nav-link">Doctors</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="{{route('references')}}" class="nav-link">References</a></li>
                     <li class="nav-item"><a href="{{route('faq')}}" class="nav-link">FAQ</a></li>
                     <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
-                    <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Make an Appointment</span></a></li>
+                    @auth
+                        <li class="nav-item"><a href="#" class="nav-link">{{ Auth::user()->name  }}</a></li>
+                        <li class="nav-item cta">
+                            <a href="/logoutuser" class="nav-link"><span>Logout</span></a>
+                        </li>
+
+                    @endauth
+                    @guest
+                    <li class="nav-item cta">
+                        <a href="/loginuser" class="nav-link" ><span>Login</span></a>
+                    </li>
+
+                    <li class="nav-item cta">
+                        <a href="/registeruser" class="nav-link" ><span>Register</span></a>
+                    </li>
+                    @endguest
+
                 </ul>
             </div>
         </div>
@@ -124,7 +138,10 @@
             <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="{{route('faq')}}" class="nav-link">FAQ</a></li>
             <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
-            <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Make an Appointment</span></a></li>
+            <li class="nav-item cta">
+                <a href="/loginuser" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Login</span></a>
+                <a href="/registeruser" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Register</span></a>
+            </li>
         </ul>
     </div>
 </div>
