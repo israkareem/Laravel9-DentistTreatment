@@ -1,8 +1,11 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Edit Category: '.$data->title)
+@section('title', 'Add Treatment')
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 
+@endsection
 @section('content')
 
 
@@ -187,48 +190,68 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
 
-            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Category: {{$data->title}}</h4>
+            <h4 style="margin-left:30px;margin-bottom:30px;">Add Treatment</h4>
 
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div   class="card">
-                        <div class="card-header">Category Elements</div>
+                        <div class="card-header">Treatment Elements</div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('admin.treatment.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
 
-                                    <div class="form-group">
-                                        <label>Parent Category</label>
-                                        <select class="form-control select2" name="parent_id">
-                                            <option value="0" selected="selected">Main Category</option>
-                                            @foreach($datalist as $rs)
-                                                <option value="{{$rs->id}}" @if($rs->id==$data->parent_id) selected="selected" @endif>
-                                                    {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}
-                                                </option>
+                                    <div class="form-control">
+                                        <label>Parent Treatment</label>
+                                        <select class="form-control select2" name="parent_id" >
+
+                                            @foreach($data as $rs)
+                                                <option value="{{$rs->id}}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option>
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+
+
+
                                         <label for="exampleInputEmail">Title </label>
 
-                                        <input type="text"  value="{{$data->title}}" class="form-control" name="title">
+                                        <input type="text"  placeholder="Title" class="form-control" name="title">
 
 
-                                </div>
+
                                 <div class="form-group">
 
                                     <label for="exampleInputEmail">Keywords</label>
 
-                                    <input type="text"  value="{{$data->keywords}}" class="form-control" name="keywords">
+                                    <input type="text"  placeholder="Keywords" class="form-control" name="keywords">
 
 
                                 </div>
                                 <div class="form-group">
 
                                     <label for="exampleInputEmail">Description</label>
+                                    <textarea class="form-control" id="detail" name="detail">
 
-                                    <input type="text"  value="{{$data->description}}" class="form-control" name="description">
+                                    </textarea>
+                                    <script>
+                                        ClassicEditor
+                                            .create( document.querySelector( '#detail' ) )
+                                            .then( editor => {
+                                                console.log( editor );
+                                            } )
+                                            .catch( error => {
+                                                console.error( error );
+                                            } );
+                                    </script>
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Price</label>
+
+                                    <input type="text"  placeholder="Price" class="form-control" name="price">
 
 
                                 </div>
@@ -237,7 +260,7 @@
                                     <label class=" form-control-label">Image</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="exampleInputFıle" accept=".jpg,.png" name="image">
+                                            <input type="file" id="exampleInputFıle" name="image">
                                         </div>
 
                                     </div>
@@ -253,7 +276,7 @@
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <select class="form-control" name="status">
-                                            <option selected>{{$data->status}}</option>
+                                            <option value="unknown">Status</option>
                                             <option value="true">True</option>
                                             <option value="false">False</option>
 
@@ -265,7 +288,7 @@
 
 
                                 <div class="form-actions form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Update Data</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -276,6 +299,8 @@
             </div>
         </div>
     </div>
+    </div>
+
     <!-- END PAGE CONTAINER-->
 
 @endsection

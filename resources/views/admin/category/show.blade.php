@@ -229,7 +229,9 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Image</th>
-                                                    <td> </td>
+                                                    <td>@if($data->image)
+                                                            <img src="{{Storage::url($data->image)}}" style="height: 100px">
+                                                        @endif</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Status</th>

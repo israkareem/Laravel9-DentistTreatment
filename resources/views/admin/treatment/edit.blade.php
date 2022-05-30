@@ -246,7 +246,7 @@
                                     <label class=" form-control-label">Image</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="exampleInputFıle" accept=".jpg,.png" name="image">
+                                            <input type="file" id="exampleInputFıle" name="image">
                                         </div>
 
                                     </div>

@@ -45,7 +45,7 @@
                     <a href="{{route('admin.message.index')}}"><i class="fa fa-envelope" style="font-size:18px"></i>Messages</a></li>
 
                 <li>
-                    <a href="#" ><i class="fas fa-user text-green"></i>Users</a></li>
+                    <a href="{{route('admin.user.index')}}" ><i class="fas fa-user text-green"></i>Users</a></li>
 
                 <li class="nav-item">
                     <a href="{{route('admin.setting')}}"  class="nav-link" >

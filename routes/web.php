@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPanel\AdminTreatmentController;
+use App\Http\Controllers\AdminPanel\AdminUserController;
 use App\Http\Controllers\AdminPanel\CommentController;
 use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
@@ -151,9 +152,25 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/edit/{id}','edit')->name('edit');
         Route::post('/update/{id}','update')->name('update');
-        Route::get('/delete/{id}','delete')->name('delete');
+        Route::post('/delete/{id}','delete')->name('delete');
 
     });
+
+    //**************************************** ADMIN USER ROUTES  *************************************************//
+    Route::prefix('/user')->name('user.')->controller(AdminUserController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/show/{id}','show')->name('show');
+        Route::post('/update/{id}','update')->name('update');
+
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/delete/{id}','delete')->name('delete');
+        Route::post('/addrole/{id}','addrole')->name('addrole');
+        Route::post('/destroyrole/{uid}/{rid}','destroyrole')->name('destroyrole');
+
+
+    });
+
 });
 
 

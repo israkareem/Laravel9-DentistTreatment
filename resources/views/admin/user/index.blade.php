@@ -1,9 +1,24 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Edit Category: '.$data->title)
+@section('title', 'User List')
 
 @section('content')
+
+    <style>.container {
+            padding: 2rem 0rem;
+        }
+
+        h4 {
+            margin: 2rem 0rem 1rem;
+        }
+
+        .table-image {
+        td, th {
+            vertical-align: middle;
+        }
+        }</style>
+
 
 
 
@@ -140,7 +155,7 @@
                                         <img src="{{asset('assets')}}/admin/images/icon/avatar-01.jpg" alt="{{Auth::user()->name}}" />
                                     </div>
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#">{{Auth::user()->name}}</a>
+                                        <a class="js-acc-btn" href="#"> {{Auth::user()->name}} </a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
@@ -187,90 +202,58 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
 
-            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Category: {{$data->title}}</h4>
-
+           <h3 style="margin-left:30px;margin-bottom:30px;margin-top: 20px">User List</h3>
             <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div   class="card">
-                        <div class="card-header">Category Elements</div>
-                        <div class="card-body card-block">
-                            <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
-                                @csrf
-
-                                <div class="form-group">
-
-                                    <div class="form-group">
-                                        <label>Parent Category</label>
-                                        <select class="form-control select2" name="parent_id">
-                                            <option value="0" selected="selected">Main Category</option>
-                                            @foreach($datalist as $rs)
-                                                <option value="{{$rs->id}}" @if($rs->id==$data->parent_id) selected="selected" @endif>
-                                                    {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                        <label for="exampleInputEmail">Title </label>
-
-                                        <input type="text"  value="{{$data->title}}" class="form-control" name="title">
-
-
-                                </div>
-                                <div class="form-group">
-
-                                    <label for="exampleInputEmail">Keywords</label>
-
-                                    <input type="text"  value="{{$data->keywords}}" class="form-control" name="keywords">
-
-
-                                </div>
-                                <div class="form-group">
-
-                                    <label for="exampleInputEmail">Description</label>
-
-                                    <input type="text"  value="{{$data->description}}" class="form-control" name="description">
-
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label class=" form-control-label">Image</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" id="exampleInputFıle" accept=".jpg,.png" name="image">
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-
-
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label class=" form-control-label">Status</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <select class="form-control" name="status">
-                                            <option selected>{{$data->status}}</option>
-                                            <option value="true">True</option>
-                                            <option value="false">False</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="form-actions form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Update Data</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <div class="container">
                     <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Roles</th>
+                                    <th scope="col">Actions</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </td>
+
+                                @foreach($data as $rs)
+                                <tr>
+
+                                    <td>{{$rs->id}}</td>
+                                    <td>{{$rs->name}}</td>
+                                    <td>{{$rs->email}}</td>
+                                    <td>{{$rs->status}}</td>
+                                    <td>
+                                        @foreach($rs->roles as $role)
+                                            {{$role->name}}
+                                          <form method="post" action="{{route('admin.user.destroyrole',['uid'=>$rs->id,'rid'=>$role->id])}}" style="display: inline-block">
+
+                                              @csrf
+                                              <input type="submit" value="[X]">
+
+                                          </form>
+                                        @endforeach
+
+                                    </td>
+
+                                    <td>
+                                        <a href="{{route('admin.user.show',['id'=>$rs->id])}} " class="btn btn-success"
+                                           onclick="return !window.open(this.href,'','top=50 left=100 height=1000, width=700')">Show</a>
+                                        <a href="{{route('admin.user.delete',['id'=>$rs->id])}}" type="button" class="btn btn-danger"
+                                           onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

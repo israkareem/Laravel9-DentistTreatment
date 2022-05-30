@@ -1,7 +1,7 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Edit Category: '.$data->title)
+@section('title', 'Edit Treatment: '.$data->title)
 
 @section('content')
 
@@ -187,22 +187,22 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
 
-            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Category: {{$data->title}}</h4>
+            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Treatment: {{$data->title}}</h4>
 
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div   class="card">
                         <div class="card-header">Category Elements</div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('admin.treatment.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
 
                                     <div class="form-group">
                                         <label>Parent Category</label>
-                                        <select class="form-control select2" name="parent_id">
-                                            <option value="0" selected="selected">Main Category</option>
+                                        <select class="form-control select2" name="category_id">
+                                            <option value="0" selected="selected">Main Treatment</option>
                                             @foreach($datalist as $rs)
                                                 <option value="{{$rs->id}}" @if($rs->id==$data->parent_id) selected="selected" @endif>
                                                     {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}
