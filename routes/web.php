@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\CategoryController as AdminCategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -74,7 +75,9 @@ return view('dashboard');
 
 Route::middleware('auth')->group(function (){
 //**************************************** USER ROUTES  *************************************************//
-    Route::middleware('userx')->prefix('userx')->name('userx.')->group(function () {
+    Route::prefix('userpanel')->name('userpanel.')->controller(UserController::class)->group(function () {
+
+        Route::get('/','index')->name('index');
     });
 
 
