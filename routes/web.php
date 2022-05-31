@@ -74,10 +74,12 @@ return view('dashboard');
 })->name('dashboard');
 
 Route::middleware('auth')->group(function (){
-//**************************************** USER ROUTES  *************************************************//
+
+//**************************************** USER PANEL ROUTES  *************************************************//
     Route::prefix('userpanel')->name('userpanel.')->controller(UserController::class)->group(function () {
 
         Route::get('/','index')->name('index');
+        Route::get('/comments','comments')->name('comments');
     });
 
 
@@ -180,10 +182,7 @@ Route::post('/setting',[AdminHomeController::class,'settingUpdate'])->name('sett
         Route::get('/delete/{id}','delete')->name('delete');
         Route::post('/addrole/{id}','addrole')->name('addrole');
         Route::post('/destroyrole/{uid}/{rid}','destroyrole')->name('destroyrole');
-
-
     });
-
 });
 
 });
