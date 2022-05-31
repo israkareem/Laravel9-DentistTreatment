@@ -65,9 +65,20 @@ Route::post('/save',[HomeController::class,'save'])->name('save');
 Route::get('/treatment/{id}',[HomeController::class,'treatment'])->name('treatment');
 Route::get('/categorytreatments/{id}/{slug}',[HomeController::class,'categorytreatments'])->name('categorytreatments');
 
+//**************************************** USER AUTH CONTROL *************************************************//
+
+
 Route::middleware(['auth:sanctum','verified'])->get('/dashboard',function (){
 return view('dashboard');
 })->name('dashboard');
+
+Route::middleware('auth')->group(function (){
+//**************************************** USER ROUTES  *************************************************//
+    Route::middleware('userx')->prefix('userx')->name('userx.')->group(function () {
+    });
+
+
+
 
 
 
@@ -76,9 +87,8 @@ return view('dashboard');
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
  Route::get('/',[AdminHomeController::class,'index'])->name('index');
 //**************************************** GENERAL Routes ROUTES  *************************************************//
-
-    Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
-    Route::post('/setting',[AdminHomeController::class,'settingUpdate'])->name('setting.update');
+Route::get('/setting',[AdminHomeController::class,'setting'])->name('setting');
+Route::post('/setting',[AdminHomeController::class,'settingUpdate'])->name('setting.update');
 
 //**************************************** ADMIN CATEGORY ROUTES  *************************************************//
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
@@ -173,6 +183,6 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
 
 });
 
-
+});
 
 

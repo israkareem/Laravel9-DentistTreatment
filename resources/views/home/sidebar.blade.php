@@ -105,7 +105,14 @@
                     <li class="nav-item"><a href="{{route('faq')}}" class="nav-link">FAQ</a></li>
                     <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
                     @auth
-                        <li class="nav-item"><a href="#" class="nav-link">{{ Auth::user()->name  }}</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">{{ Auth::user()->name  }}</a>
+                           <ul>
+                               <li><a href="#" >profile</a> </li>
+                               <li><a href="#">logout</a></li>
+                               <li><a href="#">Messages</a></li>
+
+                           </ul>
+                        </li>
                         <li class="nav-item cta">
                             <a href="/logoutuser" class="nav-link"><span>Logout</span></a>
                         </li>
