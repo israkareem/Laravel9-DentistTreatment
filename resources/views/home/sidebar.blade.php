@@ -107,7 +107,7 @@
                     @auth
                         <li class="nav-item"><a href="#" class="nav-link">{{ Auth::user()->name  }}</a>
                            <ul>
-                               <li><a href="#" >profile</a> </li>
+                               <li><a href="{{route('userpanel.index')}}" >profile</a> </li>
                                <li><a href="#">logout</a></li>
                                <li><a href="#">Messages</a></li>
 
