@@ -24,7 +24,6 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Treatment</th>
-                        <th scope="col">Name</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Comment</th>
                         <th scope="col">Rate</th>
@@ -40,17 +39,14 @@
                         <tr>
 
                             <td>{{$rs->id}}</td>
-                            <td><a href="{{route('admin.treatment.show',['id'=>$rs->treatment_id])}}">{{$rs->treatment->title}}</a></td>
-                            <td> {{$rs->user->name}}</td>
-                            <td>{{$rs->subject}}</td>
+                            <td><a href="{{route('treatment',['id'=>$rs->treatment_id])}}">{{$rs->treatment->title}}</a></td>
+                           <td>{{$rs->subject}}</td>
                             <td>{{$rs->comment}}</td>
                             <td>{{$rs->rate}}</td>
                             <td>{{$rs->status}}</td>
 
                             <td>
-                                <a href="{{route('admin.comment.show',['id'=>$rs->id])}} "class="btn btn-success"
-                                   onclick="return !window.open(this.href,'','top=50 left=100 height=1000, width=700')">Show</a>
-                                <a href="{{route('admin.comment.delete',['id'=>$rs->id])}}" type="button" class="btn btn-danger"
+                                <a href="{{route('userpanel.commentdelete',['id'=>$rs->id])}}" type="button" class="btn btn-danger"
                                    onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
                             </td>
                         </tr>

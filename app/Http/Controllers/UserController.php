@@ -85,8 +85,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function deslete($id){
+
+    }
+
+    public function commentdelete($id)
     {
+        $data= Comment::find($id);
+        $data->delete();
+        return redirect(route('userpanel.comments'));
         //
     }
 }
