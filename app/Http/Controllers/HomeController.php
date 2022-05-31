@@ -64,21 +64,14 @@ class HomeController extends Controller
         ])->onlyInput('email');
     }
 
-
-
     public function about(){
-
-
         $setting=Setting::first();
         return view('home.about',[
             'setting'=>$setting,
             ]);
-
     }
 
     public function references(){
-
-
         $setting=Setting::first();
         return view('home.references',[
             'setting'=>$setting,
