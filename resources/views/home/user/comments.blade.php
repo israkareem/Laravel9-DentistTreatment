@@ -45,9 +45,17 @@
                             <td>{{$rs->rate}}</td>
                             <td>{{$rs->status}}</td>
 
-                            <td>
-                                <a href="{{route('userpanel.commentdelete',['id'=>$rs->id])}}" type="button" class="btn btn-danger"
-                                   onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
+                            <td style="color:black !important;">
+
+
+                                <form method="post" action="{{route('userpanel.commentdelete',['id'=>$rs->id])}}" style="display: inline-block">
+
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger" style="color:red;">delete</button>
+
+                                </form>
+
+
                             </td>
                         </tr>
                     @endforeach
