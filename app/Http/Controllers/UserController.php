@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Randevu;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,5 +98,18 @@ class UserController extends Controller
         $data->delete();
         return redirect(route('userpanel.comments'));
         //
+    }
+
+    public function randevus(){
+        $randevus = Randevu::where('user_id','=',Auth::id())->get();
+        return view('home.user.randevus',[
+            'randevus'=>$randevus,
+        ]);
+    }
+
+    public function randevudelete($id){
+        $randevu = Randevu ::find($id);
+        $randevu->delete();
+        return redirect(route('userpanel.randevus'));
     }
 }

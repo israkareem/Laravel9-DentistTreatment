@@ -6,9 +6,11 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Faq;
 use App\Models\Message;
+use App\Models\Randevu;
 use App\Models\Setting;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -173,6 +175,31 @@ class HomeController extends Controller
             'fname' => $_REQUEST['fname'],
             'lname' =>  $_REQUEST['lname']
         ]);
+    }
+
+
+    public function randevu(){
+      /*   $randevu = new Randevu();
+         $randevu->user_id = $uid;
+         $randevu->treatment_id = $tid;
+         $randevu->dentist_id = $did;
+         $randevu->date = Carbon\Carbon::now()->toDateTimeString();
+      */
+        return view('home.randevu');
+
+
+
+    }
+
+    public function makerandevu(Request $request){
+        $randevu = new Randevu();
+        $randevu->user_id = Auth::id();
+        $randevu->treatment_id = $request->treatment_id;
+        $randevu->dentist_id = $request->dentist_id;
+        $randevu->date = $request->date;
+        $randevu->time = $request->time;
+        $randevu->save();
+        return $this->treatment($request->treatment_id);
     }
 
 

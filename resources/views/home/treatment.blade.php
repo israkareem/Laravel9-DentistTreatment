@@ -55,7 +55,59 @@
 
 
             <p>{!!$data->description!!}</p>
+            @auth
+                <a href="#" class="nav-link btn-primary btn" data-toggle="modal" data-target="#modalRequest"><span>Make an Appointment</span></a>
+        @else
+                <h3>To make appointment please Login.</h3>
+        @endauth
 
+            <!-- Modal -->
+            <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalRequestLabel">Make an Appointment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{route('makerandevu')}}">
+                                @csrf
+
+
+                                <input type="hidden" value="{{$data->id}}" name="treatment_id">
+                                <input type="hidden" value="{{$data->user_id}}" name="dentist_id">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <!-- <label for="appointment_date" class="text-black">Date</label> -->
+                                            <input type="text" class="form-control appointment_date" placeholder="Date" name="date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <!-- <label for="appointment_time" class="text-black">Time</label> -->
+                                            <input type="text" class="form-control appointment_time" placeholder="Time" name="time">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <!-- <label for="appointment_message" class="text-black">Message</label> -->
+                                    <textarea name="note" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Note"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Make an Appointment" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

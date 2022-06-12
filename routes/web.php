@@ -50,6 +50,8 @@ Route::view('/registeruser','home.register')->name('registeruser');
 Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
 Route::view('/loginadmin','admin.login')->name('loginadmin');
 Route::post('/loginadmincheck',[HomeController::class,'loginadmincheck'])->name('loginadmincheck');
+Route::post('/makerandevu',[HomeController::class,'makerandevu'])->name('makerandevu');
+
 
 
 
@@ -80,7 +82,10 @@ Route::middleware('auth')->group(function (){
 
         Route::get('/','index')->name('index');
         Route::get('/comments','comments')->name('comments');
+        Route::get('/randevus','randevus')->name('randevus');
         Route::post('/commentdelete/{id}','commentdelete')->name('commentdelete');
+        Route::post('/randevudelete/{id}','randevudelete')->name('randevudelete');
+
     });
 
 

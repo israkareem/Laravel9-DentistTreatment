@@ -20,7 +20,7 @@
                         <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
                             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{$rs->title}}</h1>
                             <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{$rs->description}}</p>
-                            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="#" class="btn btn-primary px-4 py-3">Make an Appointment</a></p>
+                            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="#treatments" class="btn btn-primary px-4 py-3">Make an Appointment</a></p>
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                     <h2 class="mb-3"> Treatments</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id = "treatments">
                 @foreach($datalist as $rs)
                 <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
                     <div class="staff">
