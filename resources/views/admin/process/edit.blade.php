@@ -1,9 +1,11 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Admin panel')
+@section('title', 'Edit Treatment: '.$data->title)
 
 @section('content')
+
+
 
 
     <!-- PAGE CONTAINER-->
@@ -151,7 +153,7 @@
                                                 <h5 class="name">
                                                     <a href="#">{{Auth::user()->name}}</a>
                                                 </h5>
-                                                <span class="email">{{Auth::user()->email}}</span>
+                                                <span class="email">johndoe@example.com</span>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
@@ -170,7 +172,7 @@
                                         </div>
                                         <div class="account-dropdown__footer">
                                             <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout.</a>
+                                                <i class="zmdi zmdi-power"></i>Logout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -184,32 +186,96 @@
 
         <!-- MAIN CONTENT-->
         <div class="main-content">
+
+            <h4 style="margin-left:30px;margin-bottom:30px;">Edit Treatment: {{$data->title}}</h4>
+
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="overview-wrap">
-                                <h2 class="title-1">overview</h2>
-                               </div>
+                    <div   class="card">
+                        <div class="card-header">Category Elements</div>
+                        <div class="card-body card-block">
+                            <form action="{{route('admin.treatment.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
+                                @csrf
+
+                                <div class="form-group">
+
+                                    <div class="form-group">
+                                        <label>Parent Category</label>
+                                        <select class="form-control select2" name="category_id">
+                                            <option value="0" selected="selected">Main Treatment</option>
+                                            @foreach($datalist as $rs)
+                                                <option value="{{$rs->id}}" @if($rs->id==$data->parent_id) selected="selected" @endif>
+                                                    {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                        <label for="exampleInputEmail">Title </label>
+
+                                        <input type="text"  value="{{$data->title}}" class="form-control" name="title">
+
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Keywords</label>
+
+                                    <input type="text"  value="{{$data->keywords}}" class="form-control" name="keywords">
+
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Description</label>
+
+                                    <input type="text"  value="{{$data->description}}" class="form-control" name="description">
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class=" form-control-label">Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" id="exampleInputFıle" accept=".jpg,.png" name="image">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <select class="form-control" name="status">
+                                            <option selected>{{$data->status}}</option>
+                                            <option value="true">True</option>
+                                            <option value="false">False</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-actions form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Update Data</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
-
-
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END MAIN CONTENT-->
-        <!-- END PAGE CONTAINER-->
     </div>
-
-    </div>
+    <!-- END PAGE CONTAINER-->
 
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
+use App\Http\Controllers\AdminPanel\ProcessController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\CategoryController as AdminCategoryController;
 use App\Http\Controllers\UserController;
@@ -188,6 +189,20 @@ Route::post('/setting',[AdminHomeController::class,'settingUpdate'])->name('sett
         Route::get('/delete/{id}','delete')->name('delete');
         Route::post('/addrole/{id}','addrole')->name('addrole');
         Route::post('/destroyrole/{uid}/{rid}','destroyrole')->name('destroyrole');
+    });
+
+    //**************************************** ADMIN PROCESS ROUTES  *************************************************//
+    Route::prefix('/process')->name('process.')->controller(ProcessController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/show/{id}','show')->name('show');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/create','create')->name('create');
+
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::post('/update/{id}','update')->name('update');
+        Route::post('/delete/{id}','delete')->name('delete');
+        Route::post('/store','store')->name('store');
+
     });
 });
 

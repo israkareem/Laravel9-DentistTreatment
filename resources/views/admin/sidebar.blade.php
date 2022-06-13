@@ -10,24 +10,7 @@
             <ul class="list-unstyled navbar__list">
                 <li class="active has-sub">
                     <a class="js-arrow" href="#">
-
-
-                        <a href="{{route('admin.category.index')}}">  <i class="fa fa-home" style="font-size:18px" ></i>Dashboard</a></a>
-                </li>
-
-                <li>
-                <li>
-
-                    <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li>
-
-                            <a href="index.html">Dashboard 1</a>
-                        </li>
-                        <li>
-                            <a href="index2.html">Dashboard 2</a>
-                        </li>
-
-                    </ul>
+                        <a href="{{route('admin.process.index')}}">  <i class="fa fa-home" style="font-size:18px" ></i>Process</a></a>
                 </li>
 
 

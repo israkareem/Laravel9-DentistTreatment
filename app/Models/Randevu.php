@@ -15,4 +15,8 @@ class Randevu extends Model
     public function treatment(){
         return $this->belongsTo(Treatment::class);
     }
+
+    public function dentist(){
+        return $this->belongsTo(User::class);
+    }
 }

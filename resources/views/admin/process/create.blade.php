@@ -1,9 +1,14 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Admin panel')
+@section('title', 'Add Process')
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 
+@endsection
 @section('content')
+
+
 
 
     <!-- PAGE CONTAINER-->
@@ -151,7 +156,7 @@
                                                 <h5 class="name">
                                                     <a href="#">{{Auth::user()->name}}</a>
                                                 </h5>
-                                                <span class="email">{{Auth::user()->email}}</span>
+                                                <span class="email">johndoe@example.com</span>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
@@ -170,7 +175,7 @@
                                         </div>
                                         <div class="account-dropdown__footer">
                                             <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout.</a>
+                                                <i class="zmdi zmdi-power"></i>Logout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -184,32 +189,150 @@
 
         <!-- MAIN CONTENT-->
         <div class="main-content">
+
+            <h4 style="margin-left:30px;margin-bottom:30px;">Add Treatment</h4>
+
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="overview-wrap">
-                                <h2 class="title-1">overview</h2>
-                               </div>
-                        </div>
-                    </div>
+                    <div   class="card">
+                        <div class="card-header">Treatment Elements</div>
+                        <div class="card-body card-block">
+                            <form action="{{route('admin.process.store')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+
+                                <input type="hidden" value="{{\Illuminate\Support\Facades\Auth::id()}}" name="dentist_id">
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label>Treatment</label>
+
+                                        <select class="form-control select2" name="treatment_id" >
+                                            @foreach($treatments as $rs)
+                                                <option value="{{$rs->id}}">{{$rs->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label>Dentist</label>
+                                        <select class="form-control select2" name="dentist_id" >
+
+                                            @foreach($users as $rs)
+                                                <option value="{{$rs->id}}">{{$rs->name}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label>Date</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control appointment_date" placeholder="Date" name="date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label>Time</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control appointment_date" placeholder="Date" name="time">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label>User</label>
+                                        <select class="form-control select2" name="user_id" >
+
+                                            @foreach($users as $rs)
+                                                <option value="{{$rs->id}}">{{$rs->name}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Note</label>
+                                    <textarea class="form-control" id="detail" name="note">
+
+                                    </textarea>
+                                    <script>
+                                        ClassicEditor
+                                            .create( document.querySelector( '#detail' ) )
+                                            .then( editor => {
+                                                console.log( editor );
+                                            } )
+                                            .catch( error => {
+                                                console.error( error );
+                                            } );
+                                    </script>
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Price</label>
+
+                                    <input type="text"  placeholder="Price" class="form-control" name="price">
+
+
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail">Amount</label>
+
+                                    <input type="text"  placeholder="Amount" class="form-control" name="amount">
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class=" form-control-label">Payment</label>
+                                    <select name="payment" id="payment">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+
+                                </div>
 
 
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <select class="form-control" name="status">
+                                            <option value="started">Started</option>
+                                            <option value="finished">Finished</option>
+                                            <option value="postponed">Postponed</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-actions form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END MAIN CONTENT-->
-        <!-- END PAGE CONTAINER-->
+    </div>
     </div>
 
-    </div>
+    <!-- END PAGE CONTAINER-->
 
 @endsection

@@ -179,12 +179,6 @@ class HomeController extends Controller
 
 
     public function randevu(){
-      /*   $randevu = new Randevu();
-         $randevu->user_id = $uid;
-         $randevu->treatment_id = $tid;
-         $randevu->dentist_id = $did;
-         $randevu->date = Carbon\Carbon::now()->toDateTimeString();
-      */
         return view('home.randevu');
 
 

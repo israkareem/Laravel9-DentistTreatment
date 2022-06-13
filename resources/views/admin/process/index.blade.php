@@ -1,9 +1,26 @@
 
 @extends('layouts.adminbase')
 
-@section('title', 'Admin panel')
+@section('title', 'Process List')
 
 @section('content')
+
+    <style>.container {
+            padding: 2rem 0rem;
+        }
+
+        h4 {
+            margin: 2rem 0rem 1rem;
+        }
+
+        .table-image {
+        td, th {
+            vertical-align: middle;
+        }
+        }</style>
+
+
+
 
 
     <!-- PAGE CONTAINER-->
@@ -138,7 +155,7 @@
                                         <img src="{{asset('assets')}}/admin/images/icon/avatar-01.jpg" alt="{{Auth::user()->name}}" />
                                     </div>
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#">{{Auth::user()->name}}</a>
+                                        <a class="js-acc-btn" href="#"> {{Auth::user()->name}} </a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
@@ -151,7 +168,7 @@
                                                 <h5 class="name">
                                                     <a href="#">{{Auth::user()->name}}</a>
                                                 </h5>
-                                                <span class="email">{{Auth::user()->email}}</span>
+                                                <span class="email">johndoe@example.com</span>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
@@ -170,7 +187,7 @@
                                         </div>
                                         <div class="account-dropdown__footer">
                                             <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout.</a>
+                                                <i class="zmdi zmdi-power"></i>Logout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -184,32 +201,62 @@
 
         <!-- MAIN CONTENT-->
         <div class="main-content">
+            <a href="{{route('admin.process.create')}}" class="btn btn-outline-primary btn-lg"  style="width: 200px"> Add Process</a>
+
+           <h3 style="margin-left:30px;margin-bottom:30px;margin-top: 20px">Process List</h3>
             <div class="section__content section__content--p30">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="overview-wrap">
-                                <h2 class="title-1">overview</h2>
-                               </div>
-                        </div>
-                    </div>
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Treatment</th>
+                                    <th scope="col">Hekim</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Note</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Actions</th>
 
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </td>
 
+                                @foreach($data as $rs)
+                                <tr>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
+                                    <td>{{$rs->id}}</td>
+                                    <td>{{$rs->user->name}}</td>
+                                    <td>{{$rs->treatment->title}}</td>
+                                    <td>{{$rs->dentist->name}}</td>
+                                    <td>{{$rs->price}}</td>
+                                    <td>{{$rs->amount}}</td>
+                                    <td>{{$rs->payment}}</td>
+                                    <td>{!! $rs->note !!}</td>
+                                    <td>{{$rs->status}}</td>
+
+                                    <td>
+                                        <a href="{{route('admin.process.show',['id'=>$rs->id])}} "class="btn btn-success"
+                                           onclick="return !window.open(this.href,'','top=50 left=100 height=1000, width=700')">Show</a>
+                                        <a href="{{route('admin.process.delete',['id'=>$rs->id])}}" type="button" class="btn btn-danger"
+                                           onclick="return confirm('Deleting!! Are you sure?')">Delete</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END MAIN CONTENT-->
-        <!-- END PAGE CONTAINER-->
     </div>
-
-    </div>
+    <!-- END PAGE CONTAINER-->
 
 @endsection
