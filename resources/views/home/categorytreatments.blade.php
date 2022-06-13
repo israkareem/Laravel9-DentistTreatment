@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$rs->title}}</h5>
                             <p class="card-text">{{$rs->description}}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="{{route('treatment',['id'=>$rs->id])}}" class="btn btn-primary" >Go to {{$rs->title}}</a>
                         </div>
                     </div>
             </div>
