@@ -52,6 +52,8 @@ Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
 Route::view('/loginadmin','admin.login')->name('loginadmin');
 Route::post('/loginadmincheck',[HomeController::class,'loginadmincheck'])->name('loginadmincheck');
 Route::post('/makerandevu',[HomeController::class,'makerandevu'])->name('makerandevu');
+Route::view('/error','home.adminloginerror')->name('adminlogin');
+
 
 
 
@@ -67,7 +69,7 @@ Route::get('/param/{id}/{number}',[HomeController::class,'param'])->name('param'
 Route::post('/save',[HomeController::class,'save'])->name('save');
 
 Route::get('/treatment/{id}',[HomeController::class,'treatment'])->name('treatment');
-Route::get('/categorytreatments/{id}/{slug}',[HomeController::class,'categorytreatments'])->name('categorytreatments');
+Route::get('/categorytreatments/{id}',[HomeController::class,'categorytreatments'])->name('categorytreatments');
 
 //**************************************** USER AUTH CONTROL *************************************************//
 
